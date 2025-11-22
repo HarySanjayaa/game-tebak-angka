@@ -31,3 +31,17 @@ void loadUser() {
     }
     fclose(f);
 }
+
+void saveUser() {
+    FILE *f = fopen("data pemain.txt", "w");
+    if (f == NULL) return;
+
+    for (int i = 0; i < jumlahUser; i++) {
+        fprintf(f, "%s %s %d\n",
+            dataUser[i].nama,
+            dataUser[i].pass,
+            dataUser[i].skor);
+    }
+
+    fclose(f);
+}
