@@ -106,3 +106,55 @@ int login() {
     printf("Login sukses.\n");
     return idx;
 }
+
+void mainGameSingle(int idx) {
+    int ronde, rahasia, tebak, batas;
+    int totalSkor = 0;
+
+    printf("\n=== MODE SINGLE PLAYER ===\n");
+    printf("Batas angka (Default 10): ");
+    scanf("%d", &batas);
+    clearInput();
+    if (batas < 5) batas = 10; 
+
+    printf("Berapa ronde (Default 3)? ");
+    scanf("%d", &ronde);
+    clearInput();
+    if (ronde < 1) ronde = 1;
+
+    for (int r = 1; r <= ronde; r++) {
+        printf("\n===== RONDE %d =====\n", r);
+        rahasia = (rand() % batas) + 1;
+        if (rahasia % 2 == 0)
+            printf("CLUE: Angka rahasia GENAP\n");
+        else
+            printf("CLUE: Angka rahasia GANJIL\n");
+
+        int benar = 0;
+
+        for (int percobaan = 1; percobaan <= 3; percobaan++) {
+            printf("Tebakan ke-%d: ", percobaan);
+            scanf("%d", &tebak);
+            clearInput();
+
+            if (tebak == rahasia) {
+                printf("BENAR! Angkanya adalah %d\n", rahasia);
+                totalSkor += 10;
+                benar = 1;
+                break;
+            } else {
+                printf("SALAH!\n");
+            }
+        }
+        if (!benar) {
+            printf("Jawaban benar: %d\n", rahasia);
+        }
+    }
+
+    dataUser[idx].skor += totalSkor;
+    saveUser();
+
+    printf("\n=== PERMAINAN SELESAI ===\n");
+    printf("Skor total yang kamu dapat: %d\n", totalSkor);
+    printf("Total skor telah disimpan. Lihat di menu 'Lihat Skor'.\n");
+}
