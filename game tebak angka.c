@@ -54,3 +54,30 @@ int cariUser(char u[]) {
     }
     return -1;
 }
+
+void daftarAkun() {
+    char u[30], p[30];
+
+    printf("\n=== DAFTAR ===\n");
+    printf("Nama: ");
+    scanf("%s", u);
+    clearInput();
+
+    if (cariUser(u) != -1) {
+        printf("Nama sudah dipakai.\n");
+        return;
+    }
+
+    printf("Password: ");
+    scanf("%s", p);
+    clearInput();
+
+    strcpy(dataUser[jumlahUser].nama, u);
+    strcpy(dataUser[jumlahUser].pass, p);
+    dataUser[jumlahUser].skor = 0;
+
+    jumlahUser++;
+    saveUser();
+
+    printf("Registrasi berhasil.\n");
+}
