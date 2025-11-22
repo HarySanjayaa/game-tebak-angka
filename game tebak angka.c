@@ -45,3 +45,12 @@ void saveUser() {
 
     fclose(f);
 }
+
+int cariUser(char u[]) {
+    for (int i = 0; i < jumlahUser; i++) {
+        if (strcmp(dataUser[i].nama, u) == 0) {
+            return i;
+        }
+    }
+    return -1;
+}
