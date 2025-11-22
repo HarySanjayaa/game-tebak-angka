@@ -81,3 +81,28 @@ void daftarAkun() {
 
     printf("Registrasi berhasil.\n");
 }
+
+int login() {
+    char u[30], p[30];
+
+    printf("\n=== LOGIN ===\n");
+    printf("Nama: ");
+    scanf("%s", u);
+    clearInput();
+    printf("Password: ");
+    scanf("%s", p);
+    clearInput();
+
+    int idx = cariUser(u);
+    if (idx == -1) {
+        printf("Nama tidak ditemukan.\n");
+        return -1;
+    }
+
+    if (strcmp(dataUser[idx].pass, p) != 0) {
+        printf("Password salah.\n");
+        return -1;
+    }
+    printf("Login sukses.\n");
+    return idx;
+}
