@@ -158,3 +158,58 @@ void mainGameSingle(int idx) {
     printf("Skor total yang kamu dapat: %d\n", totalSkor);
     printf("Total skor telah disimpan. Lihat di menu 'Lihat Skor'.\n");
 }
+void modeTurnamen() {
+    int batas = 20;
+    int rondeTotal = 5;
+    int totalP1 = 0, totalP2 = 0;
+
+    printf("\n\t=== MODE TURNAMEN ===\t\n");
+    printf("Turnamen ini terdiri dari %d ronde\n", rondeTotal);
+    Printf("Setiap pemain hanya memiliki 1 kali kesempatan untuk untuk menebak angka setiap ronde\n");
+    printf("Silahkan tebak angka dari 1 - 20!\n ");
+
+    for (int r = 1; r <= rondeTotal; r++) {
+
+       printf("\n====================================\n");
+       printf("         \tRONDE %d\n", r);
+       printf("=====================================\n");
+
+       int rahasia = (rand() % batas) + 1;
+
+       if (rahasia % 2 == 0)
+           printf("CLUE: Angka rahasia GENAP\n");
+       else
+           printf("CLUE: Angka rahasia GANJIL\n");
+
+       int tebak1, tebak2;
+       int sKorRondeP1 = 0, sKorRondeP2 = 0;
+
+       printf("\n--- Pemain 1 ---\n");
+       printf("Tebakan Anda: ");
+       printf("%d", &tebak1);
+       printf("\n--- Pemain 2 ---\n");
+       printf("Tebakan Anda: ");
+       scanf("%d", &tebak2);
+
+       if (tebak1 == rahasia && tebak2 == rahasia) {
+           sKorRondeP1 = 5;
+           sKorRondeP2 = 5;
+           printf("\nKEDUA PEMAIN BENAR! (+5 poin masing-masing)\n");
+       }
+       else if (tebak1 == rahasia) {
+           sKorRondeP1 = 10;
+           printf("\nPemain 1 BENAR! (+10 poin) \n");
+       }
+       else if (tebak2 == rahasia) {
+           sKorRondeP2 = 10;
+           printf("\nPemain 2 BENAR! (+10 poin) \n"); 
+       }
+       else {
+           printf("\nTidak ada yang benar.\n");
+       }
+
+       printf("Jawaban benar: %d\n, rahasia);
+
+       totalP1 += sKorRondeP1;
+       totalP2 += sKorRondeP2;
+    }
