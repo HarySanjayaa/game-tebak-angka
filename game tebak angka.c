@@ -213,3 +213,65 @@ void modeTurnamen() {
        totalP1 += sKorRondeP1;
        totalP2 += sKorRondeP2;
     }
+
+
+    printf("\n=== HASIL AKHIR TURNAMEN ===\n");
+    printf("TOTAL SKOR Pemain 1: %d\n", totalP1);
+    printf("TOTAL SKOR Pemain 2: %d\n", totalP2);
+
+    if (totalP1 > totalP2)
+        printf("\nPEMENANG: PEMAIN 1 \n");
+    else if (totalP2 > totalP1)
+        printf("\nPEMENANG: PEMAIN 2\n");
+    else
+        printf("\nHASIL SERI! \n");
+}
+void tampilSkor() {
+    printf("\n=== SKOR USER (MODE SINGLE) ===\n");
+    for (int i = 0; i < jumlahUser; i++) {
+        printf("%d. %s - %d\n", i+1, dataUser[i].nama, dataUser[i].skor);
+    }
+}
+
+int main() {
+    srand(time(NULL));
+    loadUser();
+
+    int pilih;
+    int loginIndex = -1;
+
+    while (1) {
+        printf("\n=== MENU UTAMA ===\n");
+        printf("1. Daftar\n");
+        printf("2. Login\n");
+        printf("3. Mode Single\n");
+        printf("4. Lihat Skor\n");
+        printf("5. Mode Turnamen\n");
+        printf("6. Keluar\n");
+        printf("Pilih: ");
+
+        if (scanf("%d", &pilih) != 1) {
+            clearInput();
+            continue;
+        }
+        clearInput();
+
+        if (pilih == 1) daftarAkun();
+        else if (pilih == 2) loginIndex = login();
+        else if (pilih == 3) {
+            if (loginIndex == -1) {
+                printf("Anda harus login terlebih dahulu!\n");
+            } else {
+                mainGameSingle(loginIndex);
+            }
+        }
+        else if (pilih == 4) tampilSkor();
+        else if (pilih == 5) modeTurnamen();
+        else if (pilih == 6) {
+            printf("\n===Terimakasih telah bermain;)!!===\n");
+            break;
+        }
+        else printf("Pilihan tidak ada.\n");
+    }
+    return 0;
+}
