@@ -165,7 +165,7 @@ void modeTurnamen() {
 
     printf("\n\t=== MODE TURNAMEN ===\t\n");
     printf("Turnamen ini terdiri dari %d ronde\n", rondeTotal);
-    Printf("Setiap pemain hanya memiliki 1 kali kesempatan untuk untuk menebak angka setiap ronde\n");
+    printf("Setiap pemain hanya memiliki 1 kali kesempatan untuk untuk menebak angka setiap ronde\n");
     printf("Silahkan tebak angka dari 1 - 20!\n ");
 
     for (int r = 1; r <= rondeTotal; r++) {
@@ -186,7 +186,7 @@ void modeTurnamen() {
 
        printf("\n--- Pemain 1 ---\n");
        printf("Tebakan Anda: ");
-       printf("%d", &tebak1);
+       scanf("%d", &tebak1);
        printf("\n--- Pemain 2 ---\n");
        printf("Tebakan Anda: ");
        scanf("%d", &tebak2);
@@ -208,7 +208,7 @@ void modeTurnamen() {
            printf("\nTidak ada yang benar.\n");
        }
 
-       printf("Jawaban benar: %d\n, rahasia);
+       printf("Jawaban benar: %d\n", rahasia);
 
        totalP1 += sKorRondeP1;
        totalP2 += sKorRondeP2;
@@ -275,3 +275,4 @@ int main() {
     }
     return 0;
 }
+
